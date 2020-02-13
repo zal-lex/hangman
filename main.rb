@@ -7,11 +7,12 @@ if (Gem.win_platform?)
   end
 end
 
+require 'colorize'
 require_relative 'lib/console_interface'
 require_relative 'lib/game'
 
 # 1. Поздороваться
-puts "Всем привет!"
+puts "Всем привет!".green
 
 # 2. Загрузить случайное слово из файла
 word = File.readlines(__dir__ + '/data/words.txt', encoding: 'UTF-8', chomp: true).sample

@@ -9,18 +9,24 @@ class ConsoleInterface
   end
 
   def print_out
-    puts <<~END
-      Слово: #{word_to_show}
-      #{figure}
-      Ошибки (#{@game.errors_made}): #{errors_to_show}
-      У вас осталось ошибок: #{@game.errors_allowed}
+    # puts <<~END
+    #   Слово: #{word_to_show}
+    #   #{figure}
+    #   Ошибки (#{@game.errors_made}): #{errors_to_show}
+    #   У вас осталось ошибок: #{@game.errors_allowed}
 
-    END
+    # END
+
+    puts "Слово: ".light_cyan + word_to_show
+    puts figure.yellow
+    puts "Ошибки (#{@game.errors_made}): ".light_red + errors_to_show.red.bold
+    puts "У вас осталось ошибок: ".light_green + @game.errors_allowed.to_s.green.bold
+
 
     if @game.won?
-      puts "Поздравляем, вы выиграли!"
+      puts "Поздравляем, вы выиграли!".green.on_black.blink
     elsif @game.lost?
-      puts "Вы проиграли, загаданное слово: #{@game.word}"
+      puts "Вы проиграли, загаданное слово: #{@game.word}".red.on_black.blink
     end
   end
 
@@ -32,9 +38,9 @@ class ConsoleInterface
     result =
       @game.letters_to_guess.map do |letter|
         if letter == nil
-          "__"
+          "__".light_cyan
         else
-          letter
+          letter.cyan.underline
         end
       end
 
