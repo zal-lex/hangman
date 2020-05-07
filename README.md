@@ -1,39 +1,40 @@
-# Правила игры
+# Rules of the game
 
-Всё очень просто - нужно отгадать загаданное слово, вводя по одной букве за ход.
+It is very simple - you have to guess the hidden word. You can enter only one letter per turn.
 
-Ошибиться можно не больше 7 раз.
+You can make a mistake no more than 7 times.
 
-## Выбор слов для игры
+## Source of words for the game
 
-Слово для игры выбирается случайным образом из файла:
+The word for the game is randomly selected from the file:
 
 ```
 /data/words.txt
 ```
 
-Чтобы использовать свои слова для игры нужно их записать в указанный выше файл в соответствии с требованиями:
-  1. Каждое слово с новой строки
-  2. Все буквы в слове должны быть заглавными
+Word requirements:
+  1. Еvery word from a new line
+  2. All letters in the word must be capitalized
+  3. The game is tested in Russian and English
 
-## Установка и запуск игры
+## Install and launch the game
 
-В проекте используется `bundler`, поэтому в первую очередь нужно установить этот гем (если его у вас нет):
+`bundler` is using in the project. It must be installed. You can do this with the command:
 
 ```
 gem install bundler
 ```
 
-Затем установите все необходимые гемы:
+After that, install all the necessary gems:
 
 ```
 bundle install
 ```
 
-После этого можете смело запускать игру:
+Now you can safely run the game:
 
 ```
 bundle exec ruby main.rb
 ```
 
-*Для работы приложения необходим Ruby версии 2.4.0 или выше*
+*The application requires Ruby version 2.4.0 or higher*

@@ -1,32 +1,23 @@
+# Preparing and processing data output to the console
 class ConsoleInterface
   FIGURES =
-      Dir[__dir__ + '/../data/figures/*.txt'].
-      sort.
-      map { |file_name| File.read(file_name) }
+    Dir[__dir__ + '/../data/figures/*.txt']
+    .sort.map { |file_name| File.read(file_name) }
 
   def initialize(game)
     @game = game
   end
 
   def print_out
-    # puts <<~END
-    #   Слово: #{word_to_show}
-    #   #{figure}
-    #   Ошибки (#{@game.errors_made}): #{errors_to_show}
-    #   У вас осталось ошибок: #{@game.errors_allowed}
-
-    # END
-
-    puts "Слово: ".light_cyan + word_to_show
+    puts 'Word: '.light_cyan + word_to_show
     puts figure.yellow
-    puts "Ошибки (#{@game.errors_made}): ".light_red + errors_to_show.red.bold
-    puts "У вас осталось ошибок: ".light_green + @game.errors_allowed.to_s.green.bold
-
+    puts "Errors (#{@game.errors_made}): ".light_red + errors_to_show.red.bold
+    puts 'The number of remaining attempts: '.light_green + @game.rrors_allowed.to_s.green.bold
 
     if @game.won?
-      puts "Поздравляем, вы выиграли!".green.on_black.blink
+      puts 'Win!'.green.on_black.blink
     elsif @game.lost?
-      puts "Вы проиграли, загаданное слово: #{@game.word}".red.on_black.blink
+      puts "You lose, hidden word: #{@game.word}".red.on_black.blink
     end
   end
 
@@ -37,8 +28,8 @@ class ConsoleInterface
   def word_to_show
     result =
       @game.letters_to_guess.map do |letter|
-        if letter == nil
-          "__".light_cyan
+        if letter.nil?
+          '__'.light_cyan
         else
           letter.cyan.underline
         end
@@ -51,8 +42,8 @@ class ConsoleInterface
     @game.errors.join(', ')
   end
 
-  def get_input
-    print "Введите следующую букву: "
-    letter = gets[0].upcase
+  def user_input
+    print 'Enter the next letter: '
+    gets[0].upcase
   end
 end

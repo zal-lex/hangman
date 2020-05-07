@@ -1,3 +1,4 @@
+# The basic logic of the game
 class Game
   TOTAL_ERRORS_ALLOWED = 7
 
@@ -19,18 +20,16 @@ class Game
   end
 
   def letters_to_guess
-      @letters.map do |letter|
-        if @user_guesses.include?(normalize_letter(letter)) || 
-           @user_guesses.include?(letter)
-          letter
-        else
-          nil
-        end
+    @letters.map do |letter|
+      if @user_guesses.include?(normalize_letter(letter)) ||
+         @user_guesses.include?(letter)
+        letter
       end
+    end
   end
 
   def lost?
-    errors_allowed == 0
+    errors_allowed.zero?
   end
 
   def normalize_letter(letter)
@@ -42,7 +41,7 @@ class Game
   end
 
   def normalized_letters
-    @letters.map { |letter| normalize_letter(letter)}
+    @letters.map { |letter| normalize_letter(letter) }
   end
 
   def over?
@@ -50,13 +49,13 @@ class Game
   end
 
   def play!(letter)
-    if !over? && !@user_guesses.include?(letter)
-      @user_guesses << letter
-    end
+    return unless !over? && !@user_guesses.include?(letter)
+
+    @user_guesses << letter
   end
 
   def normalized_user_guesses
-    @user_guesses.map { |letter| normalize_letter(letter)}.uniq
+    @user_guesses.map { |letter| normalize_letter(letter) }.uniq
   end
 
   def won?
