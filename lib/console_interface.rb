@@ -12,7 +12,7 @@ class ConsoleInterface
     puts 'Word: '.light_cyan + word_to_show
     puts figure.yellow
     puts "Errors (#{@game.errors_made}): ".light_red + errors_to_show.red.bold
-    puts 'The number of remaining attempts: '.light_green + @game.rrors_allowed.to_s.green.bold
+    puts 'The number of remaining attempts: '.light_green + @game.errors_allowed.to_s.green.bold
 
     if @game.won?
       puts 'Win!'.green.on_black.blink
