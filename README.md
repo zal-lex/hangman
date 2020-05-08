@@ -1,3 +1,5 @@
+*NOTE: this project taught me to use classes and their methods*
+
 # Rules of the game
 
 It is very simple - you have to guess the hidden word. You can enter only one letter per turn.
